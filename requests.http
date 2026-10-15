@@ -1,0 +1,27 @@
+### Health
+GET http://localhost:8081/actuator/health
+
+### Create payment
+POST http://localhost:8081/api/v1/payments
+Content-Type: application/json
+
+{
+  "orderId": "ORD-1001",
+  "customerId": "CUS-101",
+  "amount": 1499.00,
+  "currency": "INR"
+}
+
+### Create duplicate payment for the same order - expects 409
+POST http://localhost:8081/api/v1/payments
+Content-Type: application/json
+
+{
+  "orderId": "ORD-1001",
+  "customerId": "CUS-101",
+  "amount": 1499.00,
+  "currency": "INR"
+}
+
+### Get payment - replace with paymentId from create response
+GET http://localhost:8081/api/v1/payments/00000000-0000-0000-0000-000000000000
